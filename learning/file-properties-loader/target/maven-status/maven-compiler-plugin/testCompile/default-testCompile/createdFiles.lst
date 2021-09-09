@@ -1,0 +1,14 @@
+com/snaplogic/snaps/filepropertiesloader/CurrencyConverterTest$ExchangeRatesSupplier.class
+com/snaplogic/snaps/filepropertiesloader/DocConsumerTest.class
+com/snaplogic/snaps/filepropertiesloader/SchemaExampleTest.class
+com/snaplogic/snaps/filepropertiesloader/PropertyTypesTest.class
+com/snaplogic/snaps/filepropertiesloader/SuggestTest.class
+com/snaplogic/snaps/filepropertiesloader/TwoInputsTwoOutputsTest.class
+com/snaplogic/snaps/filepropertiesloader/CurrencyConverterTest.class
+com/snaplogic/snaps/filepropertiesloader/SnapWithAccountTest.class
+com/snaplogic/snaps/filepropertiesloader/CharacterCounterTest.class
+com/snaplogic/snaps/filepropertiesloader/DocGeneratorTest.class
+com/snaplogic/snaps/filepropertiesloader/CurrencyConverterTest$FakeForeignExchangeInjector.class
+com/snaplogic/snaps/filepropertiesloader/SingleDocGeneratorTest.class
+com/snaplogic/snaps/filepropertiesloader/SnapWithAccountTest$StubExampleAccount.class
+com/snaplogic/snaps/filepropertiesloader/CurrencyConverterTest$FakeForeignExchange.class

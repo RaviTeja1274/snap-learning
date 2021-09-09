@@ -1,0 +1,9 @@
+
+¹
+java:S1845'"Rename field "department" to prevent any misunderstanding/clash with field "DEPARTMENT" defined in interface "com.snaplogic.snaps.employeegrading.Constants".(š…¡êûÿÿÿÿ
+t
+java:S1450'"YRemove the "department" field and declare it as a local variable in the relevant methods.(š…¡êûÿÿÿÿ
+<
+java:S4738!"!Use "java.util.Set.of()" instead.(…Ëäàÿÿÿÿÿ
+I
+java:S1068'".Remove this unused "department" private field.(š…¡êûÿÿÿÿ

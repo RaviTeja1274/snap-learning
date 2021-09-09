@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <echo file="/home/gaian/Git/snaplogic/learning/file-properties-loader/target/classes/build.properties">build_number=build5
+                                    snap_pack_version=1
+                                    snap_pack_fqid=file-properties-loader-snap-1-build5.zip
+                                    snap_pack_url=$SNAP_HOME/file-properties-loader/target/file-properties-loader-build
+                                    snap_pack_name=${NAME}</echo>
+</target>
+</project>

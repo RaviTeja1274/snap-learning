@@ -1,0 +1,14 @@
+com/snaplogic/snaps/employeegrading/SnapWithAccountTest.class
+com/snaplogic/snaps/employeegrading/DocConsumerTest.class
+com/snaplogic/snaps/employeegrading/SingleDocGeneratorTest.class
+com/snaplogic/snaps/employeegrading/TwoInputsTwoOutputsTest.class
+com/snaplogic/snaps/employeegrading/CurrencyConverterTest$FakeForeignExchangeInjector.class
+com/snaplogic/snaps/employeegrading/SuggestTest.class
+com/snaplogic/snaps/employeegrading/CurrencyConverterTest.class
+com/snaplogic/snaps/employeegrading/SnapWithAccountTest$StubExampleAccount.class
+com/snaplogic/snaps/employeegrading/CurrencyConverterTest$FakeForeignExchange.class
+com/snaplogic/snaps/employeegrading/CurrencyConverterTest$ExchangeRatesSupplier.class
+com/snaplogic/snaps/employeegrading/DocGeneratorTest.class
+com/snaplogic/snaps/employeegrading/CharacterCounterTest.class
+com/snaplogic/snaps/employeegrading/PropertyTypesTest.class
+com/snaplogic/snaps/employeegrading/SchemaExampleTest.class
