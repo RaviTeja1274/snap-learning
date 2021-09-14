@@ -1,0 +1,11 @@
+{
+  "error0" : [ {
+    "colA" : "colA",
+    "colB" : "colB",
+    "colD" : "colD",
+    "error" : "Data map does not contain key:colC",
+    "reason" : null,
+    "resolution" : null,
+    "stacktrace" : "com.snaplogic.snap.api.SnapDataException: Data map does not contain key:colC"
+  } ]
+}
