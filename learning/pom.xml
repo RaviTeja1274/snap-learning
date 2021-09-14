@@ -6,7 +6,7 @@
     <version>4.27</version>
     <packaging>pom</packaging>
     <name>snaps</name>
-    <modules>
+    <!--    <modules>
         <module>japis</module>
         <module>bom</module>
         <module>db</module>
@@ -38,7 +38,6 @@
         <module>jms</module>
         <module>jwt</module>
         <module>ldap</module>
-        <!--<module>linkedin</module>-->
         <module>marketo</module>
         <module>microsoft</module>
         <module>mlanalytics</module>
@@ -73,7 +72,7 @@
         <module>workdayprism</module>
         <module>xactly</module>
         <module>zuora</module>
-    </modules>
+    </modules>-->
     <repositories>
         <repository>
             <id>central</id>
@@ -2742,4 +2741,7 @@
             <artifactId>javax.inject</artifactId>
         </dependency>
     </dependencies>
+  <modules>
+    <module>composite-table-properties</module>
+  </modules>
 </project>
