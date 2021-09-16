@@ -54,7 +54,7 @@ public class DbConnector {
                 "DELETE from registration where registration_id=?");
             preparedStatement.setInt(1, registrationId);
             int rowsUpdated = preparedStatement.executeUpdate();
-            if (rowsUpdated < 0){
+            if (rowsUpdated == 0){
                 throw new SnapDataException("Student with the provided registration id not found");
             }
         } catch (SQLException e) {
