@@ -9,8 +9,6 @@ import java.sql.SQLException;
 public class DbConnector {
 
     private static final String url = "jdbc:mariadb://localhost:3306/course_management_system?useSSL=false&user=root&password=gaian";
-    private static final String user = "root";
-    private static final String password = "gaian";
     private Connection connection;
 
     public DbConnector() throws SQLException, ClassNotFoundException {
