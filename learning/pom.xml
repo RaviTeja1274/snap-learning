@@ -2743,5 +2743,6 @@
     </dependencies>
   <modules>
     <module>composite-table-properties</module>
+    <module>student-management-system</module>
   </modules>
 </project>
