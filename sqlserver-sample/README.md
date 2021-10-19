@@ -42,8 +42,8 @@ CREATE COLUMN MASTER KEY test_cmk WITH (KEY_STORE_PROVIDER_NAME = N'MSSQL_JAVA_K
 ## Create table 
 * create table using the column encryption key created in previous step by providing following properties in create_table.properties and Run `CreateTable` class
 * Properties to update:\
-  **cmd**: command to create table
-  **columnEncryptionKeyName:** key value used to create a column encryption
+  **cmd**: command to create table\
+  **columnEncryptionKeyName:** key value used to create a column encryption\
 **Note1:** added a sample create table command, use the same as reference to create one. It has one literal `{key}` that will be.
 replaced with the columnEncryptionKey at runtime so set the value as it is before generating create table command\
 **Note2:** The actual line which will create encrypted column is\
