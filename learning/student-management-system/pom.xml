@@ -252,6 +252,7 @@
             com.snaplogic.snaps.managementsystem.SingleDocGenerator,
             com.snaplogic.snaps.managementsystem.SnapWithAccount,
             com.snaplogic.snaps.managementsystem.Suggest,
+            com.snaplogic.snaps.managementsystem.AdmissionControl,
             com.snaplogic.snaps.managementsystem.TwoInputs,
             com.snaplogic.snaps.managementsystem.TwoInputsTwoOutputs</snap.classes>
         <!-- This identifies the classes which represent the actual Accounts
