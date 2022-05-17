@@ -1,0 +1,3475 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "The Recruiting service enables applications to access Workday data about recruiting, such as job postings, prospects, and interviews.",
+        "version": "v3",
+        "title": "recruiting"
+    },
+    "host": "<tenantHostname>",
+    "basePath": "/recruiting/v3",
+    "tags": [
+        {
+            "name": "interviews"
+        },
+        {
+            "name": "jobPostings"
+        },
+        {
+            "name": "prospects",
+            "description": "Provides the ability to retrieve and create prospect data."
+        },
+        {
+            "name": "Prompt Values",
+            "description": "Retrieves instances that can be used as values for other endpoint parameters in this service."
+        }
+    ],
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/prospects/{ID}/experiences/{subresourceID}": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves a single experience instance for a ~prospect~.",
+                "description": "Retrieves the work experience with the specified ID for the specified ~prospect~.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subresourceID",
+                        "in": "path",
+                        "description": "The Workday ID of the subresource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/prospectExperienceDetails_b4dba3cbddc710001bebf80c43270014"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/interviews/{ID}": {
+            "get": {
+                "tags": [
+                    "interviews"
+                ],
+                "description": "Retrieves a collection of interviews.\n\nSecured by: Interview Feedback Public API\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/interviewEventWithJobApplicationJobRequisitionInterviewerDetails_def69f12d55410000f7ec8da36ae005a"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/values/common/countries/": {
+            "get": {
+                "tags": [
+                    "Prompt Values"
+                ],
+                "description": "Retrieves instances that can be used as values for other endpoint parameters in this service.",
+                "parameters": [
+                    
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/MULTIPLE_INSTANCE_MODEL_REFERENCE"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                
+            ]
+        },
+        "/jobPostings": {
+            "get": {
+                "tags": [
+                    "jobPostings"
+                ],
+                "description": "Secured by: Job Postings: External\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "The job family group for the job posting, according to the job requisition.",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "jobSite",
+                        "in": "query",
+                        "description": "The job posting site that the job is posted on.",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/jobPostingAnchorSummary_5597c990f22e10000fc34f022dce0020"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects": {
+            "post": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Create ~prospects~.",
+                "description": "Creates a single ~prospect~ instance with the specified data. In the request body, specify at least the required field: candidate.name.country.id. The Recruiting Name Components configuration might require additional fields for candidate.name. To determine additional required fields, see the Recruiting Name Components tab on the Maintain Name Components by ~Country~ task.\n\nSecured by: Create External Prospects, Set Up: External Career Site Access\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "prospectSummary",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/prospectSummary_7657284bd7781000178a3bf6e17f001a"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "201": {
+                        "description": "Resource created.",
+                        "schema": {
+                            "$ref": "#/definitions/prospectSummary_7657284bd7781000178a3bf6e17f001a"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA278 | Enter active candidate pools.\nA255 | Enter referral as the source when you enter referred by.\nA821 | You can't specify a Phone Device Type that's Hidden for Recruiting.\nA274 | Enter a valid format for Phone Number.\nA269 | Enter an email address in this format: xxx@yy.com.\nA823 | Specify a value for Country Phone Code.\nA268 | Enter the referral for the prospect.\nA820 | Specify a value for Phone Device Type.\nA284 | Enter active candidate tags.\nA822 | Specify a value for Phone Number.\nA256 | Enter a name.\nA249 | You must enter the prospect\u2019s email address or phone number.\nA673 | The Phone Device Type that you specified must be Active.\nA288 | Enter a phone number in the valid format: [PhoneValidationMessage]",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/languages/{subresourceID}": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves a single language instance for a ~prospect~.",
+                "description": "Retrieves the language with the specified ID for the specified ~prospect~.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subresourceID",
+                        "in": "path",
+                        "description": "The Workday ID of the subresource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/candidateLanguageSkillDetails_ecf7ccfb11c11000285d4727e4270017"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/educations": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves the education of a single ~prospect~ instance.",
+                "description": "Retrieves the education of the ~prospect~ with the specified ID.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/candidateEducationDetails_9727f970aa231000052ae7db3fc0000b"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA283 | Enter a last year attended that is after the first year attended.\nA261 | Enter a school name.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Creates educations for a ~prospect~.",
+                "description": "To create a single instance, specify the single JSON object in the request body. To create multiple instances, specify \"bulk=true\" as a query parameter. You must specify the JSON object collection in data[ ] in the request body. The maximum collection size is 100.  In the request body, specify at least these required fields: schoolName.\n\nSecured by: Create External Prospects\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "candidateEducationDetails",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/candidateEducationDetails_9727f970aa231000052ae7db3fc0000b"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "201": {
+                        "description": "Resource created.",
+                        "schema": {
+                            "$ref": "#/definitions/candidateEducationDetails_9727f970aa231000052ae7db3fc0000b"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA283 | Enter a last year attended that is after the first year attended.\nA261 | Enter a school name.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/interviews/{ID}/feedback/{subresourceID}": {
+            "get": {
+                "tags": [
+                    "interviews"
+                ],
+                "description": "Retrieves interview feedback for the specified ID.\n\nSecured by: Interview Feedback Public API\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subresourceID",
+                        "in": "path",
+                        "description": "The Workday ID of the subresource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/interviewDetailSummary_def69f12d5541000139a7815aae9008f"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/skills/{subresourceID}": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves a single skill instance for a ~prospect~.",
+                "description": "Retrieves the skill with the specified ID for the specified ~prospect~.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subresourceID",
+                        "in": "path",
+                        "description": "The Workday ID of the subresource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/candidateSkillItemDetails_2705750e957f10002beca80792940019"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/resumeAttachments/{subresourceID}": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves a single resume attachment instance for a ~prospect~.",
+                "description": "Retrieves the resume attachment with the specified ID for the specified ~prospect~.\n\nSecured by: Candidate Data: Attachments\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subresourceID",
+                        "in": "path",
+                        "description": "The Workday ID of the subresource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/resumeAttachmentDetailsView_134c3544d220100007f0f9b541a400a5"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nThe file size should not exceed [file size]MB.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/jobPostings/{ID}": {
+            "get": {
+                "tags": [
+                    "jobPostings"
+                ],
+                "description": "Secured by: Job Postings: External\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/jobPostingAnchorSummary_5597c990f22e10000fc34f022dce0020"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/experiences": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves the work experience of a single ~prospect~ instance.",
+                "description": "Retrieves the work experience of the ~prospect~ with the specified ID.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/prospectExperienceDetails_b4dba3cbddc710001bebf80c43270014"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Creates experiences for a ~prospect~.",
+                "description": "To create a single instance, specify the single JSON object in the request body. To create multiple instances, specify \"bulk=true\" as a query parameter. You must specify the JSON object collection in data[ ] in the request body. The maximum collection size is 100.  In the request body, specify at least these required fields: companyName, title, startYear.\n\nSecured by: Create External Prospects\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "prospectExperienceDetails",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/prospectExperienceDetails_b4dba3cbddc710001bebf80c43270014"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "201": {
+                        "description": "Resource created.",
+                        "schema": {
+                            "$ref": "#/definitions/prospectExperienceDetails_b4dba3cbddc710001bebf80c43270014"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA286 | Enter a number from 1 to 12 for start month.\nA247 | Enter a title.\nA240 | Enter end year when you enter the end month.\nA258 | Enter a start year.\nA282 | Enter a company name.\nA271 | Enter an end month and end year that occur on or after the start month and start year.\nA253 | Enter a number from 1 to 12 for end month.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/resumeAttachments/{subresourceID}?type=viewFile": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "description": "Secured by: Candidate Data: Attachments\n\nScope: Recruiting\n\nContains attachment(s)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subresourceID",
+                        "in": "path",
+                        "description": "The Workday ID of the subresource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/resumeAttachmentFileView_ee7318fbf39e10001e321c67d42300c0"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nThe file size should not exceed [file size]MB.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/interviews/{ID}/feedback": {
+            "get": {
+                "tags": [
+                    "interviews"
+                ],
+                "description": "Retrieves interview feedback for the specified ID.\n\nSecured by: Interview Feedback Public API\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/interviewDetailSummary_def69f12d5541000139a7815aae9008f"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "interviews"
+                ],
+                "description": "Submits interview details for the processing ~worker~ with the interviewer's rating and comment.\n\nSecured by: Interview Feedback Public API\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "interviewDetailSummary",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/interviewDetailSummary_def69f12d5541000139a7815aae9008f"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "201": {
+                        "description": "Resource created.",
+                        "schema": {
+                            "$ref": "#/definitions/interviewDetailSummary_def69f12d5541000139a7815aae9008f"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA129 | You cannot take action on this candidate.\nA134 | Overall Comment is included but is hidden (Configure Optional Fields).  Please contact your administrator.\nA130 | Select a valid rating.\nA132 | Overall Comment Required (Configure Optional Fields) but not included.  Please contact your administrator.\nA136 | Overall Rating is Required (Configure Optional Fields) but not included.  Please contact your administrator.\nA131 | You cannot submit interview feedback because you are not a part of the interview team.\nA133 | Overall Rating is included but is hidden (Configure Optional Fields).  Please contact your administrator.\nA135 | Interview feedback task contains competencies, questionnaires, or both; complete feedback using Workday or the Give Interview Feedback URL provided by the API.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/resumeAttachments": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves attached resumes for a single ~prospect~ instance.",
+                "description": "Retrieves attached resumes for the ~prospect~ with the specified ID.\n\nSecured by: Candidate Data: Attachments\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/resumeAttachmentDetailsView_134c3544d220100007f0f9b541a400a5"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nThe file size should not exceed [file size]MB.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Creates resume attachments for a ~prospect~.",
+                "description": "Creates a single resume attachment instance with the specified data. In the request body, specify at least these required fields: fileName, attachmentContent.\n\nSecured by: Create External Prospects, Set Up: External Career Site Access\n\nScope: Recruiting\n\nContains attachment(s)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "resumeAttachmentDetailsCreate",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/resumeAttachmentDetailsCreate_ee22ee09075410000346b5ebfa2303e4"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "201": {
+                        "description": "Resource created.",
+                        "schema": {
+                            "$ref": "#/definitions/resumeAttachmentDetailsCreate_ee22ee09075410000346b5ebfa2303e4"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA270 | Select a file to upload.\nA246 | One of the following file extensions must be used: [allowed file extensions].\n- | The file size should not exceed [file size]MB.\nA252 | Enter a file name.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/resumeAttachments?type=viewFile": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "description": "Secured by: Candidate Data: Attachments\n\nScope: Recruiting\n\nContains attachment(s)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/resumeAttachmentFileView_ee7318fbf39e10001e321c67d42300c0"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\n\nThe file size should not exceed [file size]MB.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/interviews": {
+            "get": {
+                "tags": [
+                    "interviews"
+                ],
+                "description": "Retrieves a collection of interviews.\n\nSecured by: Interview Feedback Public API\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "interviewStatus",
+                        "in": "query",
+                        "description": "\"All applicable interview statuses for an Interview event. Statuses can be: \n * AWAITING_ME - An in-progress Interview event is waiting for the logged-in user's feedback. \n * COMPLETED - An Interview event is complete.\n * FEEDBACK_COMPLETE - All interview feedback for this in-progress event was submitted, but the Interview event isn\u2019t awaiting the Make Interview Decision step.\n * NOT_SCHEDULED - An interview hasn't been scheduled for an in-progress Interview event.\n * PENDING_FEEDBACK - An in-progress Interview event is waiting for interviewer feedback.\n * SCHEDULED - An interview is scheduled for an in-progress Interview event.\n * SUBMITTED_FEEDBACK - The logged-in user submitted feedback for an in-progress Interview event.\n * MAKE_INTERVIEW_DECISION - The make an interview decision step for the candidate.\"",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/interviewEventWithJobApplicationJobRequisitionInterviewerDetails_def69f12d55410000f7ec8da36ae005a"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/educations/{subresourceID}": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves a single education instance for a ~prospect~.",
+                "description": "Retrieves the education with specified ID for the specified ~prospect~.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subresourceID",
+                        "in": "path",
+                        "description": "The Workday ID of the subresource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/candidateEducationDetails_9727f970aa231000052ae7db3fc0000b"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA283 | Enter a last year attended that is after the first year attended.\nA261 | Enter a school name.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/languages": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves the languages of a single ~prospect~ instance.",
+                "description": "Retrieves the languages of the ~prospect~ with the specified ID.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/candidateLanguageSkillDetails_ecf7ccfb11c11000285d4727e4270017"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Creates languages for a ~prospect~.",
+                "description": "To create a single instance, specify the single JSON object in the request body. To create multiple instances, specify \"bulk=true\" as a query parameter. You must specify the JSON object collection in data[ ] in the request body. The maximum collection size is 100. In the request body, specify at least these required fields: language.id, abilities, abilities.abilityType.\n\nSecured by: Create External Prospects\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "candidateLanguageSkillDetails",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/candidateLanguageSkillDetails_ecf7ccfb11c11000285d4727e4270017"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "201": {
+                        "description": "Resource created.",
+                        "schema": {
+                            "$ref": "#/definitions/candidateLanguageSkillDetails_ecf7ccfb11c11000285d4727e4270017"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA290 | Duplicate language entries are not allowed.\nA267 | At least one ability for this language is required.\nA242 | Enter only 1 ability type for the same language.\nA263 | Enter a language.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}/skills": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves the skills of a single ~prospect~ instance.",
+                "description": "Retrieves the skills of the ~prospect~ with the specified ID.\n\nSecured by: Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The maximum number of objects in a single response. The default is 20. The maximum is 100.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The zero-based index of the first object in a response collection. The default is 0. Use offset with the limit parameter to control paging of a response collection. Example: If limit is 5 and offset is 9, the response returns a collection of 5 objects starting with the 10th object.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/candidateSkillItemDetails_2705750e957f10002beca80792940019"
+                                    }
+                                },
+                                "total": {
+                                    "type": "integer",
+                                    "format": "int64"
+                                }
+                            },
+                            "description": "collection something or other"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Creates skills for a ~prospect~.",
+                "description": "To create a single instance, specify the single JSON object in the request body. To create multiple instances, specify \"bulk=true\" as a query parameter. You must specify the JSON object collection in data[ ] in the request body. The maximum collection size is 100. In the request body, specify at least these required fields: name.\n\nSecured by: Create External Prospects\n\nScope: Recruiting",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "candidateSkillItemDetails",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/candidateSkillItemDetails_2705750e957f10002beca80792940019"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "201": {
+                        "description": "Resource created.",
+                        "schema": {
+                            "$ref": "#/definitions/candidateSkillItemDetails_2705750e957f10002beca80792940019"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)\nError Code | Validation Message\n--- | ---\nA259 | You cannot enter duplicate skills.\nA257 | Enter a skill name.",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        },
+        "/prospects/{ID}": {
+            "get": {
+                "tags": [
+                    "prospects"
+                ],
+                "summary": "Retrieves a single ~prospect~ instance.",
+                "description": "Retrieves the ~prospect~ with the specified ID.\n\nSecured by: Set Up: External Career Site Access, Prospects\n\nScope: Recruiting, Talent Pipeline",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The Workday ID of the resource.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response. A successful response can return no matched data.",
+                        "schema": {
+                            "$ref": "#/definitions/prospectSummary_7657284bd7781000178a3bf6e17f001a"
+                        }
+                    },
+                    "default": {
+                        "description": "An error occurred.",
+                        "schema": {
+                            "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid resource or operation. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "403": {
+                        "description": "User has insufficient permissions. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found. (https://community.workday.com/rest/error-messages)",
+                        "schema": {
+                            "$ref": "#/definitions/VALIDATION_ERROR_MODEL_REFERENCE"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "OAuth2": {
+            "type": "oauth2",
+            "authorizationUrl": "https://<tenantAuthorizationHostname>",
+            "flow": "implicit"
+        }
+    },
+    "definitions": {
+        "INSTANCE_MODEL_REFERENCE": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "wid / id / reference id",
+                    "pattern": "^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\$[0-9]+)|(\\S+=\\S+))$"
+                },
+                "descriptor": {
+                    "type": "string",
+                    "description": "A description of the instance",
+                    "readOnly": true
+                },
+                "href": {
+                    "type": "string",
+                    "description": "A link to the instance",
+                    "readOnly": true
+                }
+            }
+        },
+        "ERROR_MODEL_REFERENCE": {
+            "type": "object",
+            "required": [
+                "error"
+            ],
+            "properties": {
+                "error": {
+                    "type": "string",
+                    "description": "A description of the error"
+                }
+            }
+        },
+        "VALIDATION_ERROR_MODEL_REFERENCE": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                },
+                {
+                    "properties": {
+                        "errors": {
+                            "type": "array",
+                            "description": "An array of validation errors",
+                            "items": {
+                                "$ref": "#/definitions/ERROR_MODEL_REFERENCE"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "FACETS_MODEL_REFERENCE": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "This object represents the possible facets for this resource",
+                "readOnly": true,
+                "properties": {
+                    "descriptor": {
+                        "type": "string",
+                        "description": "A description of the facet"
+                    },
+                    "facetParameter": {
+                        "type": "string",
+                        "description": "The alias used to select the facet"
+                    },
+                    "values": {
+                        "type": "array",
+                        "description": "the facet values",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "count": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "description": "The number of instances returned by this facet"
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "description": "wid / id / reference id",
+                                    "pattern": "^(?:(?:[0-9a-f]{32})|(?:[0-9]+\\$[0-9]+)|(\\S+=\\S+))$"
+                                },
+                                "descriptor": {
+                                    "type": "string",
+                                    "description": "A description of the facet"
+                                },
+                                "href": {
+                                    "type": "string",
+                                    "description": "A link to the instance",
+                                    "readOnly": true
+                                }
+                            },
+                            "required": [
+                                "id"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MULTIPLE_INSTANCE_MODEL_REFERENCE": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                    }
+                }
+            }
+        },
+        "jobType_8b241418d7ce1000073b511c6e2a0041": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/positionWorkerTypeDetail_8b241418d7ce1000089e70503c92005a"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "company_8b241418d7ce1000073b5122b5a90042": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/organizationDetail_8b241418d7ce100008b027833f33005d"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "jobSite_8b241418d7ce1000073b5115cd300040": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/jobPostingSiteDetail_8b241418d7ce10000818455b78e40057"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "primaryLocation_8b241418d7ce1000073b51293ed40043": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/locationSummary_8b241418d7ce100007a5c9eea7de004c"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "timeType_8b241418d7ce1000073b510155b0003d": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/positionTimeTypeDetail_8b241418d7ce100007fe51d00f630053"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "jobPostingAnchorSummary_5597c990f22e10000fc34f022dce0020": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "jobType": {
+                            "description": "The ~worker~ sub-type for the job posting, according to the job requisition.",
+                            "$ref": "#/definitions/jobType_8b241418d7ce1000073b511c6e2a0041"
+                        },
+                        "spotlightJob": {
+                            "type": "boolean",
+                            "example": true,
+                            "description": "True if the job posting is a ~Spotlight Job~ or not.",
+                            "x-workday-type": "Boolean"
+                        },
+                        "additionalLocations": {
+                            "type": "array",
+                            "description": "The additional locations on the job posting, according to the job requisition.",
+                            "items": {
+                                "$ref": "#/definitions/locationSummary_8b241418d7ce100007a5c9eea7de004c"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "company": {
+                            "description": "The ~supervisory organization~ assigned to the job requisition associated with the job posting.",
+                            "$ref": "#/definitions/company_8b241418d7ce1000073b5122b5a90042"
+                        },
+                        "categories": {
+                            "type": "array",
+                            "description": "The job family group for the job posting, according to the job requisition.",
+                            "items": {
+                                "$ref": "#/definitions/jobFamilyGroupDetail_8b241418d7ce1000081068ca51810055"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "jobSite": {
+                            "description": "The job posting site that the job is posted on.",
+                            "$ref": "#/definitions/jobSite_8b241418d7ce1000073b5115cd300040"
+                        },
+                        "endDate": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2022-04-30T07:00:00.000Z",
+                            "description": "The end date for the job posting.",
+                            "x-workday-type": "Date"
+                        },
+                        "url": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "External URL for Job Posting if it is posted to a published Workday External Career Site.",
+                            "x-workday-type": "Text"
+                        },
+                        "jobDescription": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The description of the job for the job posting.",
+                            "x-workday-type": "Rich Text"
+                        },
+                        "startDate": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2022-04-30T07:00:00.000Z",
+                            "description": "The start date for the job posting.",
+                            "x-workday-type": "Date"
+                        },
+                        "primaryLocation": {
+                            "description": "The primary location for the job posting, according to the associated job requisition.",
+                            "$ref": "#/definitions/primaryLocation_8b241418d7ce1000073b51293ed40043"
+                        },
+                        "title": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The title of the job posting, according to the associated job requisition.",
+                            "x-workday-type": "Text"
+                        },
+                        "timeType": {
+                            "description": "The position time type for job posting.",
+                            "$ref": "#/definitions/timeType_8b241418d7ce1000073b510155b0003d"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "jobRequisition_df78b8e577c9100015f051a74e0b00a2": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/jobRequisitionPublic_df78b8e577c91000162ee14015b600a4"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "jobApplication_df78b8e577c91000201ea3e7d0f60101": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/jobApplicationPublic_b36c621f46fd10001cc501100a4e03c7"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "interviewEventWithJobApplicationJobRequisitionInterviewerDetails_def69f12d55410000f7ec8da36ae005a": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "interviewStatuses": {
+                            "type": "array",
+                            "description": "\"All applicable interview statuses for an Interview event. Statuses can be: \n * AWAITING_ME - An in-progress Interview event is waiting for the logged-in user's feedback. \n * COMPLETED - An Interview event is complete.\n * FEEDBACK_COMPLETE - All interview feedback for this in-progress event was submitted, but the Interview event isn\u2019t awaiting the Make Interview Decision step.\n * NOT_SCHEDULED - An interview hasn't been scheduled for an in-progress Interview event.\n * PENDING_FEEDBACK - An in-progress Interview event is waiting for interviewer feedback.\n * SCHEDULED - An interview is scheduled for an in-progress Interview event.\n * SUBMITTED_FEEDBACK - The logged-in user submitted feedback for an in-progress Interview event.\n * MAKE_INTERVIEW_DECISION - The make an interview decision step for the candidate.\"",
+                            "items": {
+                                "$ref": "#/definitions/interviewStatusRepresentation_782d6c28615f10000371c7f006740172"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "hasCompetenciesQuestionnaires": {
+                            "type": "boolean",
+                            "example": true,
+                            "description": "If true, the interviewer feedback task awaiting processing has Competencies or Questionnaires with configured XIP settings.",
+                            "x-workday-type": "Boolean"
+                        },
+                        "giveInterviewFeedbackLink": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "A URL for the Give Interview Feedback task, for ~workers~ with access to the Interview Feedback Detail event awaiting processing.",
+                            "x-workday-type": "Text"
+                        },
+                        "jobRequisition": {
+                            "description": "The job requisition the candidate applied to. Requires that the user is an interviewer for the in-progress Interview event or has access  to the Candidate Data: Interview Feedback Results domain.",
+                            "$ref": "#/definitions/jobRequisition_df78b8e577c9100015f051a74e0b00a2"
+                        },
+                        "workersPendingFeedback": {
+                            "type": "array",
+                            "description": "Interviewers with pending interview feedback.",
+                            "items": {
+                                "$ref": "#/definitions/workerForInterviewRepresentation_0e1101ea4ec4100008fdfd8289ed0016"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "jobApplication": {
+                            "description": "The job application for the Recruiting event. Requires that the user is an interviewer for the in-progress Interview event or has access  to the Candidate Data: Interview Feedback Results domain.",
+                            "$ref": "#/definitions/jobApplication_df78b8e577c91000201ea3e7d0f60101"
+                        },
+                        "overallRating": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The Overall Rating XIP configuration formatted as text.",
+                            "x-workday-type": "Text"
+                        },
+                        "overallComment": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The Overall Comment XIP configuration formatted as text.",
+                            "x-workday-type": "Text"
+                        },
+                        "interviewers": {
+                            "type": "array",
+                            "description": "All  ~workers~ selected to interview the candidate for a given Interview event.",
+                            "items": {
+                                "$ref": "#/definitions/workerForInterviewRepresentation_0e1101ea4ec4100008fdfd8289ed0016"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "overallRating_def69f12d5541000141441c84bd00096": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/interviewFeedbackRatingSummary_def69f12d554100013fe5747ffa50092"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "interviewDetailSummary_def69f12d5541000139a7815aae9008f": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "overallRating": {
+                            "description": "The interviewer's rating.",
+                            "$ref": "#/definitions/overallRating_def69f12d5541000141441c84bd00096"
+                        },
+                        "comment": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The interviewer's overall and competency comments.",
+                            "x-workday-type": "Text"
+                        },
+                        "dateSubmitted": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2022-04-30T07:00:00.000Z",
+                            "description": "The feedback submission date.",
+                            "x-workday-type": "Date"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "candidate_263b3523259410001ed40f0f6518126a": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/candidateSummary_263b3523259410001f3119d56cda126c"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "status_4e798b9f4f0c10000f0d81a848650021": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "type_4e798b9f4f0c10000f0d819e58340020": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "source_4e798b9f4f0c10000f0d818b76f6001f": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "level_4e798b9f4f0c10000f0d81b1a0740022": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "referredBy_4e798b9f4f0c10000f0d81ba535a0023": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "prospectSummary_7657284bd7781000178a3bf6e17f001a": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "candidateTags": {
+                            "type": "array",
+                            "description": "The candidate tags associated with the candidate.",
+                            "items": {
+                                "$ref": "#/definitions/candidateTag_7b4e2f108d3b1000162f47403b7d0037"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "candidatePools": {
+                            "type": "array",
+                            "description": "The active, static pools for the candidate.",
+                            "items": {
+                                "$ref": "#/definitions/candidatePool_7c49be35aa7210001012f723bc6012ca"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "candidate": {
+                            "description": "The candidate profile associated with this ~Prospect~.",
+                            "$ref": "#/definitions/candidate_263b3523259410001ed40f0f6518126a"
+                        },
+                        "contactConsent": {
+                            "type": "boolean",
+                            "example": true,
+                            "description": "If true, the candidate agrees to be contacted.",
+                            "x-workday-type": "Boolean"
+                        },
+                        "status": {
+                            "description": "The status of the ~prospect~. See configured types in the Maintain ~Prospect~ Statuses task.",
+                            "$ref": "#/definitions/status_4e798b9f4f0c10000f0d81a848650021"
+                        },
+                        "type": {
+                            "description": "The type of the ~prospect~. See configured types in the Maintain ~Prospect~ Types task.",
+                            "$ref": "#/definitions/type_4e798b9f4f0c10000f0d819e58340020"
+                        },
+                        "source": {
+                            "description": "The source for the ~prospect~. Examples: LinkedIn, Facebook.",
+                            "$ref": "#/definitions/source_4e798b9f4f0c10000f0d818b76f6001f"
+                        },
+                        "level": {
+                            "description": "The targeted management level for the ~Prospect~.",
+                            "$ref": "#/definitions/level_4e798b9f4f0c10000f0d81b1a0740022"
+                        },
+                        "referredBy": {
+                            "description": "The ~worker~ who referred the candidate.",
+                            "$ref": "#/definitions/referredBy_4e798b9f4f0c10000f0d81ba535a0023"
+                        },
+                        "href": {
+                            "type": "string",
+                            "description": "A link to the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "resumeAttachmentDetailsView_134c3544d220100007f0f9b541a400a5": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "fileName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The file name of the attachment.",
+                            "maxLength": 255,
+                            "x-workday-type": "Text"
+                        },
+                        "fileExtension": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The file extension of the attachment.",
+                            "x-workday-type": "Text"
+                        },
+                        "fileLength": {
+                            "type": "integer",
+                            "example": "623042908",
+                            "description": "The file length of the attachment.",
+                            "x-workday-type": "Numeric"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "prospectExperienceDetails_b4dba3cbddc710001bebf80c43270014": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "companyName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The company name the candidate entered in their job history.",
+                            "x-workday-type": "Text"
+                        },
+                        "location": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The location of this company.",
+                            "x-workday-type": "Text"
+                        },
+                        "description": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "Any responsibilities or accomplishments that the candidate gained at the associated company.",
+                            "x-workday-type": "Text"
+                        },
+                        "startYear": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2022-04-30T07:00:00.000Z",
+                            "description": "The year the candidate started employment at this company.",
+                            "x-workday-type": "Date"
+                        },
+                        "currentlyWorkHere": {
+                            "type": "boolean",
+                            "example": true,
+                            "description": "If true, the candidate currently works at this company.",
+                            "x-workday-type": "Boolean"
+                        },
+                        "title": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The business title for the candidate's work experience.",
+                            "x-workday-type": "Text"
+                        },
+                        "startMonth": {
+                            "type": "integer",
+                            "example": "70",
+                            "description": "The month the candidate started employment at this company.",
+                            "x-workday-type": "Numeric"
+                        },
+                        "endYear": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2022-04-30T07:00:00.000Z",
+                            "description": "The year the candidate ended employment at this company.",
+                            "x-workday-type": "Date"
+                        },
+                        "endMonth": {
+                            "type": "integer",
+                            "example": "18",
+                            "description": "The month the candidate ended employment at this company.",
+                            "x-workday-type": "Numeric"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "language_ecf7ccfb11c11000285d4771a6300019": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "candidateLanguageSkillDetails_ecf7ccfb11c11000285d4727e4270017": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "language": {
+                            "description": "The language for this language skill.",
+                            "$ref": "#/definitions/language_ecf7ccfb11c11000285d4771a6300019"
+                        },
+                        "abilities": {
+                            "type": "array",
+                            "description": "The abilities associated with this language skill.",
+                            "items": {
+                                "$ref": "#/definitions/languageAbilityDetails_ecf7ccfb11c110002a0cd3b3ff8b0022"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "native": {
+                            "type": "boolean",
+                            "example": true,
+                            "description": "If true, this language skill is the native language.",
+                            "x-workday-type": "Boolean"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "degree_9727f970aa23100005e6ec6727ee0011": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "fieldOfStudy_9727f970aa23100005e6ec5e7dd10010": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "candidateEducationDetails_9727f970aa231000052ae7db3fc0000b": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "schoolName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The name of the school the candidate attended or is attending.",
+                            "x-workday-type": "Text"
+                        },
+                        "degree": {
+                            "description": "The candidate's degree at this educational institution.",
+                            "$ref": "#/definitions/degree_9727f970aa23100005e6ec6727ee0011"
+                        },
+                        "firstYearAttended": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2022-04-30T07:00:00.000Z",
+                            "description": "The first year the candidate attended this educational institution.",
+                            "x-workday-type": "Date"
+                        },
+                        "fieldOfStudy": {
+                            "description": "The field of study for the candidate at this educational institution.",
+                            "$ref": "#/definitions/fieldOfStudy_9727f970aa23100005e6ec5e7dd10010"
+                        },
+                        "lastYearAttended": {
+                            "type": "string",
+                            "format": "date",
+                            "example": "2022-04-30T07:00:00.000Z",
+                            "description": "The last year the candidate attended this educational institution.",
+                            "x-workday-type": "Date"
+                        },
+                        "gradeAverage": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The candidate's grade average at this educational institution.",
+                            "x-workday-type": "Text"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "candidateSkillItemDetails_2705750e957f10002beca80792940019": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The name of the candidate skill.",
+                            "x-workday-type": "Text"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "positionWorkerTypeDetail_8b241418d7ce1000089e70503c92005a": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "resumeAttachmentFileView_ee7318fbf39e10001e321c67d42300c0": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "organizationDetail_8b241418d7ce100008b027833f33005d": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "countryPhoneCode_6f9c04282952100023a80fd30a5f173e": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "deviceType_6f9c0428295210002484a8f3720f1796": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "candidatePhoneDetails_6f9c04282952100023a80fa49bde173d": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "countryPhoneCode": {
+                            "description": "The ~country~ code of the phone number.",
+                            "$ref": "#/definitions/countryPhoneCode_6f9c04282952100023a80fd30a5f173e"
+                        },
+                        "deviceType": {
+                            "description": "The type of phone device.",
+                            "$ref": "#/definitions/deviceType_6f9c0428295210002484a8f3720f1796"
+                        },
+                        "extension": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The phone number extension.",
+                            "x-workday-type": "Text"
+                        },
+                        "phoneNumber": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The full primary phone number of the person.",
+                            "x-workday-type": "Text"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "jobApplicationPublic_b36c621f46fd10001cc501100a4e03c7": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "yearsInCurrentJob": {
+                            "type": "integer",
+                            "example": "751414402",
+                            "description": "The number of years the candidate has been employed at their current job",
+                            "x-workday-type": "Numeric"
+                        },
+                        "totalYearsExperience": {
+                            "type": "integer",
+                            "example": "254118413",
+                            "description": "The total years of experience for the candidate on this job application.",
+                            "x-workday-type": "Numeric"
+                        },
+                        "numberOfJobs": {
+                            "type": "integer",
+                            "example": "395769",
+                            "description": "The number of jobs for a candidate on this job application.",
+                            "x-workday-type": "Numeric"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "jobFamilyGroupDetail_8b241418d7ce1000081068ca51810055": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "proficiency_ecf7ccfb11c110002a0cd3c79f4c0023": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "abilityType_ecf7ccfb11c110002a0cd3d48d1d0024": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "languageAbilityDetails_ecf7ccfb11c110002a0cd3b3ff8b0022": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "proficiency": {
+                            "description": "The proficiency for a specific language ability.",
+                            "$ref": "#/definitions/proficiency_ecf7ccfb11c110002a0cd3c79f4c0023"
+                        },
+                        "abilityType": {
+                            "description": "The type of language ability. See the configured types in the Maintain Language Ability Types.",
+                            "$ref": "#/definitions/abilityType_ecf7ccfb11c110002a0cd3d48d1d0024"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "interviewFeedbackRatingSummary_def69f12d554100013fe5747ffa50092": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "hiringManager_b47f16fb63e910000a6ac5854fd4021c": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/workerForInterviewRepresentation_0e1101ea4ec4100008fdfd8289ed0016"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "jobRequisitionPublic_df78b8e577c91000162ee14015b600a4": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "primaryRecruiters": {
+                            "type": "array",
+                            "description": "The primary recruiters assigned to the job requisition. If no primary recruiter is assigned, the field is blank.",
+                            "items": {
+                                "$ref": "#/definitions/workerForInterviewRepresentation_0e1101ea4ec4100008fdfd8289ed0016"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "recruiters": {
+                            "type": "array",
+                            "description": "The non-primary recruiters assigned to the job requisition.",
+                            "items": {
+                                "$ref": "#/definitions/workerForInterviewRepresentation_0e1101ea4ec4100008fdfd8289ed0016"
+                            },
+                            "x-workday-type": "Multi-instance"
+                        },
+                        "hiringManager": {
+                            "description": "The hiring manager for a job requisition.",
+                            "$ref": "#/definitions/hiringManager_b47f16fb63e910000a6ac5854fd4021c"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "phone_4d9dacbbb7bb10000c97867b421a4c7e": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/candidatePhoneDetails_6f9c04282952100023a80fa49bde173d"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "name_59514ca580dc100021a481f97c54068b": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/name_59514ca580dc100021a2a27ee1880689"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "candidateSummary_263b3523259410001f3119d56cda126c": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The candidate's email address.",
+                            "x-workday-type": "Text"
+                        },
+                        "phone": {
+                            "description": "The candidate's primary home phone number.",
+                            "$ref": "#/definitions/phone_4d9dacbbb7bb10000c97867b421a4c7e"
+                        },
+                        "name": {
+                            "description": "The global name associated with the candidate.",
+                            "$ref": "#/definitions/name_59514ca580dc100021a481f97c54068b"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "country_8b241418d7ce100007a5ca00337b004d": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/countryDetail_8b241418d7ce10000797fe76c17a0046"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "region_8b241418d7ce100007a5ca0b072e004e": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/countryRegionDetail_8b241418d7ce100007a4d8749d270049"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "locationSummary_8b241418d7ce100007a5c9eea7de004c": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "country": {
+                            "description": "Returns the ~country~ from the primary address for the location.",
+                            "$ref": "#/definitions/country_8b241418d7ce100007a5ca00337b004d"
+                        },
+                        "region": {
+                            "description": "Returns the country region for the location.",
+                            "$ref": "#/definitions/region_8b241418d7ce100007a5ca0b072e004e"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "countryPredefinedNameComponent_e16f06ca954910001a110a8851cd013d": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "countryRegionDetail_8b241418d7ce100007a4d8749d270049": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The ISO alpha-2 code for a country region.",
+                            "x-workday-type": "Text"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "contentType_ee22ee09075410000346b6722d9b03e8": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/INSTANCE_MODEL_REFERENCE"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "resumeAttachmentDetailsCreate_ee22ee09075410000346b5ebfa2303e4": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "fileLength"
+                    ],
+                    "properties": {
+                        "fileLength": {
+                            "type": "integer",
+                            "example": "1083325787",
+                            "description": "The file length of the attachment.",
+                            "x-workday-type": "Numeric"
+                        },
+                        "contentType": {
+                            "description": "The content type of the attachment.",
+                            "$ref": "#/definitions/contentType_ee22ee09075410000346b6722d9b03e8"
+                        },
+                        "fileName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The file name of the attachment.",
+                            "maxLength": 255,
+                            "x-workday-type": "Text"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "workerForInterviewRepresentation_0e1101ea4ec4100008fdfd8289ed0016": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "candidateTag_7b4e2f108d3b1000162f47403b7d0037": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "positionTimeTypeDetail_8b241418d7ce100007fe51d00f630053": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "candidatePool_7c49be35aa7210001012f723bc6012ca": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "social_a229cf3cded91000151b47c7e0e2012c": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/countryPredefinedNameComponent_e16f06ca954910001a110a8851cd013d"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "salutation_a229cf3cded91000151b47b82570012a": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/countryPredefinedNameComponent_e16f06ca954910001a110a8851cd013d"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "country_a229cf3cded91000151b47775e040123": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/country_1089da0ab90910000f6d7bd30bb20881"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "hereditary_a229cf3cded91000151b479726220126": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/countryPredefinedNameComponent_e16f06ca954910001a110a8851cd013d"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "title_a229cf3cded91000151b47af4c400129": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/countryPredefinedNameComponent_e16f06ca954910001a110a8851cd013d"
+                },
+                {
+                    
+                }
+            ]
+        },
+        "name_59514ca580dc100021a2a27ee1880689": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "secondaryLocal": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's secondary family name in local script.  Workday only tracks local names for countries where a non-Latin script is commonly used.",
+                            "x-workday-type": "Text"
+                        },
+                        "firstNameLocal": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's given name in local script.  Workday only tracks local names for countries where a non-Latin script is commonly used.",
+                            "x-workday-type": "Text"
+                        },
+                        "firstNameLocal2": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's given name in second local script.  Workday only tracks local names for countries where a non-Latin script is commonly used.",
+                            "x-workday-type": "Text"
+                        },
+                        "social": {
+                            "description": "The social suffix from the name.",
+                            "$ref": "#/definitions/social_a229cf3cded91000151b47c7e0e2012c"
+                        },
+                        "salutation": {
+                            "description": "The salutation from the name.",
+                            "$ref": "#/definitions/salutation_a229cf3cded91000151b47b82570012a"
+                        },
+                        "fullName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The Full Name for a person, when it is provided. Workday only tracks Full Name for countries where the Full Name name component is used.",
+                            "x-workday-type": "Text"
+                        },
+                        "lastNameLocal2": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's last name in second local script.  Workday only tracks local names for countries where a non-Latin script is commonly used.",
+                            "x-workday-type": "Text"
+                        },
+                        "lastName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's family name.",
+                            "x-workday-type": "Text"
+                        },
+                        "secondaryLastName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The secondary family name for a person.",
+                            "x-workday-type": "Text"
+                        },
+                        "middleNameLocal": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's middle name in local script.  Workday only tracks local names for countries where a non-Latin script is commonly used.",
+                            "x-workday-type": "Text"
+                        },
+                        "country": {
+                            "description": "The country from the name.",
+                            "$ref": "#/definitions/country_a229cf3cded91000151b47775e040123"
+                        },
+                        "firstName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The first or given name for a person.",
+                            "x-workday-type": "Text"
+                        },
+                        "lastNameLocal": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's last name in local script.  Workday only tracks local names for countries where a non-Latin script is commonly used.",
+                            "x-workday-type": "Text"
+                        },
+                        "middleName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's middle name.",
+                            "x-workday-type": "Text"
+                        },
+                        "tertiaryLastName": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The person's tertiary last name.",
+                            "x-workday-type": "Text"
+                        },
+                        "hereditary": {
+                            "description": "The hereditary suffix from the name.",
+                            "$ref": "#/definitions/hereditary_a229cf3cded91000151b479726220126"
+                        },
+                        "title": {
+                            "description": "The prefix from the name.",
+                            "$ref": "#/definitions/title_a229cf3cded91000151b47af4c400129"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "jobPostingSiteDetail_8b241418d7ce10000818455b78e40057": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "country_1089da0ab90910000f6d7bd30bb20881": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "countryDetail_8b241418d7ce10000797fe76c17a0046": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "alpha3Code": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit amet, cum choro singulis consectetuer ut, ubique iisque contentiones ex duo. Quo lorem etiam eu.",
+                            "description": "The ISO alpha-3 code for a country.",
+                            "maxLength": 3,
+                            "x-workday-type": "Text"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        },
+        "interviewStatusRepresentation_782d6c28615f10000371c7f006740172": {
+            "allOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "href": {
+                            "type": "string",
+                            "description": "A link to the instance"
+                        },
+                        "id": {
+                            "type": "string",
+                            "description": "Id of the instance"
+                        },
+                        "descriptor": {
+                            "type": "string",
+                            "example": "Lorem ipsum dolor sit ame",
+                            "description": "A preview of the instance"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
